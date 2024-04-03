@@ -1,0 +1,38 @@
+---
+- name: Deploy On Tomcat
+  hosts: localhost
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Stop Tomcat
+      shell: ./shutdown.sh
+      args:
+        chdir: /opt/tomcat/apache-tomcat-9.0.87/bin
+      register: Stop_Tomcat
+
+    - name: Debug Stop Output
+      debug:
+        var: Stop_Tomcat
+
+
+    - name: Deploy_War
+      ansible.builtin.copy:
+        src: /home/ec2-user/devops.war
+        dest: /opt/tomcat/apache-tomcat-9.0.87/webapps
+        remote_src: true
+      register: Deployed
+
+    - name: Debug Deployment
+      debug:
+        var: Deployed
+
+    - name: Start Tomcat
+      shell: ./startup.sh
+      args:
+        chdir: /opt/tomcat/apache-tomcat-9.0.87/bin
+      register: Start_Tomcat
+
+    - name: Debug Stop Output
+      debug:
+        var: Start_Tomcat
