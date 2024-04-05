@@ -1,8 +1,8 @@
 ---
 - name: Deploy On Tomcat
   hosts: localhost
-  become: true
-  gather_facts: true
+  become: false
+  gather_facts: false
 
   tasks:
     - name: Stop Tomcat
