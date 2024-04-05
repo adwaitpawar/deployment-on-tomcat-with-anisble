@@ -8,7 +8,7 @@
     - name: Stop Tomcat
       shell: ./shutdown.sh
       args:
-        chdir: /opt/tomcat/apache-tomcat-9.0.87/bin
+        chdir: /opt/apache-tomcat-9.0.87/bin
       register: Stop_Tomcat
 
     - name: Debug Stop Output
@@ -19,7 +19,7 @@
     - name: Deploy_War
       ansible.builtin.copy:
         src: /home/ec2-user/devopsenroll.war
-        dest: /opt/tomcat/apache-tomcat-9.0.87/webapps
+        dest: /opt/apache-tomcat-9.0.87/webapps
         remote_src: true
       register: Deployed
 
@@ -30,7 +30,7 @@
     - name: Start Tomcat
       shell: ./startup.sh
       args:
-        chdir: /opt/tomcat/apache-tomcat-9.0.87/bin
+        chdir: /opt/apache-tomcat-9.0.87/bin
       register: Start_Tomcat
 
     - name: Debug Stop Output
