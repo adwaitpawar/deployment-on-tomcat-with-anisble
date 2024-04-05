@@ -18,7 +18,7 @@
 
     - name: Deploy_War
       ansible.builtin.copy:
-        src: /home/ec2-user/devopsenroll.war
+        src: /opt/devopsenroll.war
         dest: /opt/apache-tomcat-9.0.87/webapps
         remote_src: true
       register: Deployed
